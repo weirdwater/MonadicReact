@@ -12,6 +12,7 @@ type ListProps<A,B> = {
   items:Immutable.List<A>
   className:string,
   renderer:((index:number) => (_:A) => C<B>) } & CmdCommon<B>
+  
 type ListState<A,B> = { ps:"creating"|Immutable.List<JSX.Element> }
 class List<A,B> extends React.Component<ListProps<A,B>,ListState<A,B>> {
   constructor(props:ListProps<A,B>,context:any) {

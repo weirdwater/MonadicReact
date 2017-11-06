@@ -80,7 +80,7 @@ class Unit<A> extends React.Component<UnitProps<A>,UnitState<A>> {
   }
   render() {
     this.props.debug_info && console.log("Render:", this.props.debug_info())
-    return null
+    return []
   }
 }
 
@@ -103,11 +103,12 @@ class Join<A> extends React.Component<JoinProps<A>,JoinState<A>> {
         p_inner:p_inner.comp(new_props.context)(cb => x => new_props.cont(cb)(x))})) })
   }
   render() {
-    return <div>
-        { this.state.p_outer }
-        { this.state.p_inner == "waiting" ? null
-          : this.state.p_inner }
-      </div>
+    return [
+        this.state.p_outer ,
+        this.state.p_inner == "waiting" 
+          ? null
+          : this.state.p_inner
+    ]
   }
 }
 
@@ -143,20 +144,15 @@ class Bind<B,A> extends React.Component<BindProps<B,A>,BindState<B,A>> {
   }
   render() {
     this.props.debug_info && console.log("Render:", this.props.debug_info())
-    return <div className={`bind ${this.props.className || ""}`}>
-      {
-        (this.state.k == "waiting for p" || !this.props.once) && this.state.p != "creating" ?
-          this.state.p
-        :
-          null
-      }
-      {
-        this.state.k != "waiting for p" ?
-          this.state.k
-        :
-          null
-      }
-    </div>
+    return [
+        (this.state.k == "waiting for p" || !this.props.once) && this.state.p != "creating" 
+          ? this.state.p
+          : null,
+
+        this.state.k != "waiting for p" 
+          ? this.state.k
+          : null
+      ]
   }
 }
 
@@ -183,7 +179,9 @@ class Map<A,B> extends React.Component<MapProps<A,B>,MapState<A,B>> {
   }
   render() {
     this.props.debug_info && console.log("Render:", this.props.debug_info())
-    return this.state.p != "creating" ? this.state.p : null
+    return this.state.p != "creating" 
+      ? [this.state.p] 
+      : []
   }
 }
 
@@ -209,7 +207,9 @@ class Filter<A> extends React.Component<FilterProps<A>,FilterState<A>> {
   }
   render() {
     this.props.debug_info && console.log("Render:", this.props.debug_info())
-    return this.state.p != "creating" ? this.state.p : null
+    return this.state.p != "creating" 
+      ? [this.state.p] 
+      : []
   }
 }
 
@@ -257,11 +257,9 @@ export class SimpleApplication<A> extends React.Component<SimpleApplicationProps
   }
 
   render() {
-    return <div className="monadic-application" key={`application@${this.state.context.logic_frame}`}>
-      {
+    return [
         this.props.p.comp(() => this.state.context)(callback => x => this.props.cont(x))
-      }
-    </div>
+    ]
   }
 }
 

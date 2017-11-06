@@ -29,7 +29,7 @@ class Repeat<A> extends React.Component<RepeatProps<A>,RepeatState<A>> {
     this.stopped = true
   }
   
-  componentWillMount() {
+  componentDidMount() {
     this.stopped = false
   }
 
@@ -68,7 +68,9 @@ class Any<A,B> extends React.Component<AnyProps<A,B>,AnyState<A,B>> {
             this.props.cont(callback)(new_value)))})
   }
   render() {
-    return <div className={this.props.className}> { this.state.ps != "creating" ? this.state.ps : null } </div>
+    return this.state.ps != "creating" ? 
+      this.state.ps : 
+      null
   }
 }
 
@@ -137,7 +139,7 @@ class All<A> extends React.Component<AllProps<A>,AllState<A>> {
         ))})
   }
   render() {
-    return <div> { this.state.ps != "creating" ? this.state.ps : null } </div>
+    return this.state.ps != "creating" ? this.state.ps : null
   }
 }
 

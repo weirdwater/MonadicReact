@@ -18,15 +18,11 @@ app.put("/api/v1/course", function(req, res) {
   
 })
 
-
 app.get('*', function (req, res) {
   let slug = req.params[0] || ""
   slug = slug.replace(/^\//, "")
   res.sendFile(__dirname + '/index.html')
 })
-
-
-
 
 app.listen(5000, function () {
 })

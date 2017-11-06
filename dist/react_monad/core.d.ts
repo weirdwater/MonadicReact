@@ -70,6 +70,6 @@ export declare type SimpleApplicationState<A> = {
 export declare class SimpleApplication<A> extends React.Component<SimpleApplicationProps<A>, SimpleApplicationState<A>> {
     constructor(props: SimpleApplicationProps<A>, context: any);
     context_from_props(props: SimpleApplicationProps<A>, p: C<void>): Context;
-    render(): JSX.Element;
+    render(): JSX.Element[];
 }
 export declare let simple_application: <A>(p: C<A>, cont: (_: A) => void) => JSX.Element;

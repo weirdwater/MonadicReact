@@ -363,7 +363,7 @@ class RichText extends React.Component<RichTextProps,RichTextState> {
       )
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     this.props.cont(() => {})(this.state.current_state)
   }
   render() {
